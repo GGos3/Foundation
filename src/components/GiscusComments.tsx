@@ -1,7 +1,6 @@
 "use client";
 
 import Giscus from "@giscus/react";
-import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
 
 function subscribeNoop() {
@@ -15,7 +14,6 @@ const categoryId = process.env.NEXT_PUBLIC_GISCUS_CATEGORY_ID;
 
 export function GiscusComments() {
   const mounted = useSyncExternalStore(subscribeNoop, () => true, () => false);
-  const { resolvedTheme } = useTheme();
 
   if (!mounted) {
     return <div className="h-24" aria-hidden />;
@@ -29,8 +27,6 @@ export function GiscusComments() {
     return null;
   }
 
-  const theme = resolvedTheme === "dark" ? "dark_dimmed" : "light";
-
   return (
     <section className="mt-12 border-t border-zinc-200/80 pt-6 dark:border-zinc-800/80">
       <Giscus
@@ -40,11 +36,11 @@ export function GiscusComments() {
         category={category}
         categoryId={categoryId}
         mapping="pathname"
-        strict="1"
+        strict="0"
         reactionsEnabled="1"
         emitMetadata="0"
-        inputPosition="bottom"
-        theme={theme}
+        inputPosition="top"
+        theme="preferred_color_scheme"
         lang="ko"
         loading="lazy"
       />
