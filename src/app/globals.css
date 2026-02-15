@@ -1,0 +1,181 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1f2328;
+}
+
+.dark {
+  --background: #0d1117;
+  --foreground: #e6edf3;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+.site-shell {
+  background-image:
+    radial-gradient(circle at 20% 0%, rgba(148, 163, 184, 0.14), transparent 40%),
+    radial-gradient(circle at 100% 0%, rgba(148, 163, 184, 0.1), transparent 35%);
+}
+
+.dark .site-shell {
+  background-image:
+    radial-gradient(circle at 20% 0%, rgba(148, 163, 184, 0.1), transparent 45%),
+    radial-gradient(circle at 100% 0%, rgba(51, 65, 85, 0.16), transparent 40%);
+}
+
+.toc-sticky {
+  position: static;
+}
+
+@media (min-width: 1024px) {
+  .toc-sticky {
+    position: sticky;
+    top: 5.5rem;
+  }
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+/* ─── Prose Overrides ─── */
+.prose {
+  --tw-prose-body: #1f2328;
+  --tw-prose-headings: #1f2328;
+  --tw-prose-links: #0969da;
+  --tw-prose-bold: #1f2328;
+  --tw-prose-code: #1f2328;
+  --tw-prose-pre-bg: #f6f8fa;
+  --tw-prose-pre-code: #1f2328;
+  --tw-prose-quotes: #59636e;
+  --tw-prose-quote-borders: #d1d9e0;
+  --tw-prose-hr: #d1d9e0;
+  --tw-prose-th-borders: #d1d9e0;
+  --tw-prose-td-borders: #d1d9e0;
+}
+
+.dark .prose {
+  --tw-prose-body: #e6edf3;
+  --tw-prose-headings: #e6edf3;
+  --tw-prose-links: #4493f8;
+  --tw-prose-bold: #e6edf3;
+  --tw-prose-code: #e6edf3;
+  --tw-prose-pre-bg: #161b22;
+  --tw-prose-pre-code: #e6edf3;
+  --tw-prose-quotes: #8d96a0;
+  --tw-prose-quote-borders: #30363d;
+  --tw-prose-hr: #30363d;
+  --tw-prose-th-borders: #30363d;
+  --tw-prose-td-borders: #30363d;
+}
+
+/* ─── rehype-pretty-code ─── */
+[data-rehype-pretty-code-figure] {
+  margin: 1.25em 0;
+  border: 1px solid #d1d9e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dark [data-rehype-pretty-code-figure] {
+  border-color: #30363d;
+}
+
+[data-rehype-pretty-code-figure] pre {
+  overflow-x: auto;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+[data-rehype-pretty-code-figure] code {
+  display: grid;
+  counter-reset: line;
+}
+
+[data-rehype-pretty-code-figure] code [data-line] {
+  padding: 0 1rem;
+  border-left: 2px solid transparent;
+}
+
+[data-rehype-pretty-code-figure] code [data-highlighted-line] {
+  background-color: rgba(56, 139, 253, 0.1);
+  border-left-color: #388bfd;
+}
+
+/* Inline code */
+:not(pre) > code {
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  font-size: 0.875em;
+  background-color: #eff1f3;
+}
+
+.dark :not(pre) > code {
+  background-color: #343941;
+}
+
+/* Light/dark theme code blocks */
+[data-rehype-pretty-code-figure] code[data-theme*=" "],
+[data-rehype-pretty-code-figure] code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+.dark [data-rehype-pretty-code-figure] code[data-theme*=" "],
+.dark [data-rehype-pretty-code-figure] code[data-theme*=" "] span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
+/* ─── Code block title ─── */
+[data-rehype-pretty-code-title] {
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  color: #59636e;
+  background-color: #f6f8fa;
+  border: 0;
+  border-bottom: 1px solid #d1d9e0;
+}
+
+.dark [data-rehype-pretty-code-title] {
+  color: #8d96a0;
+  background-color: #161b22;
+  border-color: #30363d;
+}
+
+/* ─── Scrollbar ─── */
+pre::-webkit-scrollbar {
+  height: 6px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: #d1d9e0;
+  border-radius: 3px;
+}
+
+.dark pre::-webkit-scrollbar-thumb {
+  background: #30363d;
+}
