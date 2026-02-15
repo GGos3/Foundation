@@ -3,7 +3,6 @@ import Link from "next/link";
 import { getAllPosts, getPostBySlug, getTableOfContents } from "@/lib/posts";
 import { MdxContent } from "@/components/MdxContent";
 import { TableOfContents } from "@/components/TableOfContents";
-import { PostHelpfulButton } from "@/components/PostHelpfulButton";
 import { GiscusComments } from "@/components/GiscusComments";
 import { Tag } from "@/components/Tag";
 import type { Metadata } from "next";
@@ -87,8 +86,6 @@ export default async function BlogPostPage({ params }: Props) {
         {toc.length > 0 && <div className="mb-8 lg:hidden"><TableOfContents items={toc} /></div>}
 
         <MdxContent source={post.content} />
-
-        <PostHelpfulButton slug={post.slug} />
 
         <GiscusComments />
 
