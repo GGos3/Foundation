@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import GithubSlugger from "github-slugger";
 import type { Post, PostMeta, TocItem } from "./types";
 
 const contentDir = path.join(process.cwd(), "src/content");
@@ -119,10 +120,6 @@ function calculateReadingTime(content: string): number {
 }
 
 function slugifyHeading(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/["'`]/g, "")
-    .trim()
-    .replace(/[^\p{L}\p{N}\s-]/gu, "")
-    .replace(/\s+/g, "-");
+  const slugger = new GithubSlugger();
+  return slugger.slug(text);
 }
